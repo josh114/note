@@ -11,6 +11,7 @@ const connectDB = require('./config/dbConn');
 const mongoose = require('mongoose');
 const { logEvents } = require('./middleware/logger');
 const port = process.env.PORT || 3500;
+const userRoute = require('./routes/userRoutes');
 connectDB();
 app.use(logger);
 app.use(cors(corsOptions));
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use('/', express.static(path.join(__dirname, '/public')));
 app.use('/', require('./routes/root'));
+app.use('/users', userRoute);
 
 app.all('*', (req, res) => {
   res.status(404);

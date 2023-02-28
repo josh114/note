@@ -12,8 +12,7 @@ const noteSchema = mongoose.Schema(
       required: true,
     },
     text: {
-      type: Boolean,
-      default: true,
+      type: String,
     },
     completed: {
       type: Boolean,
@@ -25,10 +24,10 @@ const noteSchema = mongoose.Schema(
   }
 );
 noteSchema.plugin(AutoIncrement, {
-  inc_filed: 'ticket',
+  inc_field: 'ticket',
   id: 'ticketNums',
   start_seq: 500,
 });
 
 const Note = mongoose.model('Note', noteSchema);
-module.exports = User;
+module.exports = Note;
